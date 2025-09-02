@@ -1,6 +1,7 @@
 package com.bindglam.enchant.listeners;
 
 import com.bindglam.enchant.SandeulEnchantPlugin;
+import com.bindglam.enchant.gui.SandeulEnchantGui;
 import com.bindglam.enchant.utils.InventoryUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -51,17 +52,17 @@ public class BlockListener implements Listener {
         if(!event.getAction().isRightClick()) return;
 
         if(block != null) {
-            if(block.getType() == Material.ENCHANTING_TABLE) {
-                event.setCancelled(true);
-
-                player.sendMessage(Component.translatable(block).append(Component.text("은(는) 이용할 수 없습니다.")).color(NamedTextColor.RED));
-            }
-
             if(block.getState() instanceof Container container) {
                 if(!player.isOp()) {
                     Bukkit.getAsyncScheduler().runNow(SandeulEnchantPlugin.getInstance(), (task) ->
                             InventoryUtil.filterInventory(container.getInventory(), ENCHANTED_BOOK_FILTER));
                 }
+            }
+
+            if(block.getType() == Material.ENCHANTING_TABLE) {
+                event.setCancelled(true);
+
+                SandeulEnchantGui.open(player);
             }
         }
     }
