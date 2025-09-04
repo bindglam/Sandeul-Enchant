@@ -22,5 +22,11 @@ java {
 tasks {
     runServer {
         minecraftVersion("1.21.4")
+
+        downloadPlugins {
+            modrinth("excellentenchants", "5.2.1")
+            modrinth("nightcore", "2.7.15")
+            modrinth("packetevents", "2.9.5+spigot")
+        }
     }
 }
