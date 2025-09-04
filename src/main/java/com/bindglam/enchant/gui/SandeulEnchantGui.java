@@ -104,7 +104,7 @@ public class SandeulEnchantGui implements Listener {
             applier.upgradeRandom();
         }
 
-        player.setLevel(player.getLevel() - event.getExpLevelCost());
+        player.setLevel(Math.max(player.getLevel() - event.getExpLevelCost(), 0));
     }
 
     @EventHandler
