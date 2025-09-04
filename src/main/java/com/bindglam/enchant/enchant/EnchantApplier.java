@@ -1,5 +1,6 @@
 package com.bindglam.enchant.enchant;
 
+import com.bindglam.enchant.SandeulEnchantPlugin;
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import net.kyori.adventure.key.Key;
@@ -94,10 +95,12 @@ public class EnchantApplier {
         List<Enchantment> enchantments = itemStack.getEnchantments().keySet().stream().toList();
 
         Enchantment enchantment = enchantments.get(random.nextInt(enchantments.size()));
-        while(itemStack.getEnchantmentLevel(enchantment) + 1 > enchantment.getMaxLevel()) {
+        int maxLevel = SandeulEnchantPlugin.getInstance().getCompatibilityManager().getEnchantments().get(enchantment);
+        while(itemStack.getEnchantmentLevel(enchantment) + 1 > maxLevel) {
             enchantment = enchantments.get(random.nextInt(enchantments.size()));
+            maxLevel = SandeulEnchantPlugin.getInstance().getCompatibilityManager().getEnchantments().get(enchantment);
         }
-        itemStack.addUnsafeEnchantment(enchantment, Math.min(itemStack.getEnchantmentLevel(enchantment) + 1, enchantment.getMaxLevel()));
+        itemStack.addUnsafeEnchantment(enchantment, Math.min(itemStack.getEnchantmentLevel(enchantment) + 1, maxLevel));
     }
 
     public boolean canUpgrade(@NotNull ItemStack itemStack) {

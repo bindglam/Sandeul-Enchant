@@ -9,10 +9,14 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.nightexpressdev.com/releases")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("su.nightexpress.excellentenchants:Core:5.2.1") {
+        exclude("org.spigotmc")
+    }
 }
 
 java {

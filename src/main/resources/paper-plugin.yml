@@ -8,9 +8,9 @@ dependencies:
     ExcellentEnchants:
       load: BEFORE
       required: false
-      join-classpath: false
+      join-classpath: true
   server:
     ExcellentEnchants:
       load: BEFORE
       required: false
-      join-classpath: false
+      join-classpath: true
