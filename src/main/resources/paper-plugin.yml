@@ -3,3 +3,14 @@ version: '1.0'
 main: com.bindglam.enchant.SandeulEnchantPlugin
 api-version: '1.21.4'
 bootstrapper: com.bindglam.enchant.SandeulEnchantBootstrap
+dependencies:
+  bootstrap:
+    ExcellentEnchants:
+      load: BEFORE
+      required: false
+      join-classpath: false
+  server:
+    ExcellentEnchants:
+      load: BEFORE
+      required: false
+      join-classpath: false
